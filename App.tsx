@@ -7,7 +7,6 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import HomeScreen from "./src/Screen/HomeScreen";
 import ConfigScreen from "./src/Screen/ConfigScreen";
 import QuizScreen from "./src/Screen/QuizScreen";
-import { color } from "react-native-reanimated";
 
 enum Colors {
   bottomTab = "#0277bd",
@@ -26,13 +25,11 @@ export default function App() {
             let iconName: string = "ios-information-circle";
 
             if (route.name === "コード") {
-              iconName = focused
-                ? "ios-information-circle"
-                : "ios-information-circle-outline";
+              iconName = "ios-musical-notes";
             } else if (route.name === "クイズ") {
-              iconName = focused ? "ios-list-box" : "ios-list";
+              iconName = "ios-help-circle";
             } else if (route.name === "設定") {
-              iconName = focused ? "ios-list-box" : "ios-list";
+              iconName = "ios-settings";
             }
 
             // You can return any component that you like here!
@@ -42,6 +39,7 @@ export default function App() {
         tabBarOptions={{
           activeTintColor: Colors.activeColor,
           inactiveTintColor: Colors.inActiveColor,
+          style: { height: 85 },
         }}
       >
         <Tab.Screen name="コード" component={HomeScreen} />
