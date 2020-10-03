@@ -3,6 +3,8 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+
 import Ionicons from "react-native-vector-icons/Ionicons";
 import HomeScreen from "./src/Screen/HomeScreen";
 import ConfigScreen from "./src/Screen/ConfigScreen";
@@ -14,8 +16,46 @@ enum Colors {
   inActiveColor = "gray",
 }
 
-const Tab = createBottomTabNavigator();
+const Home = () => {
+  return <HomeScreen />;
+};
 
+const Config = () => {
+  return <ConfigScreen />;
+};
+
+const Quiz = () => {
+  return <QuizScreen />;
+};
+
+const HomeStack = createStackNavigator();
+const HomeStackScreen = () => {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="コード検索" component={Home} />
+    </HomeStack.Navigator>
+  );
+};
+
+const QuizStack = createStackNavigator();
+const QuizStackScreen = () => {
+  return (
+    <QuizStack.Navigator>
+      <QuizStack.Screen name="コードトーンクイズ" component={Quiz} />
+    </QuizStack.Navigator>
+  );
+};
+
+const ConfigStack = createStackNavigator();
+const ConfigStackScreen = () => {
+  return (
+    <ConfigStack.Navigator>
+      <ConfigStack.Screen name="設定" component={Config} />
+    </ConfigStack.Navigator>
+  );
+};
+
+const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer>
@@ -42,9 +82,9 @@ export default function App() {
           style: { height: 85 },
         }}
       >
-        <Tab.Screen name="コード" component={HomeScreen} />
-        <Tab.Screen name="クイズ" component={QuizScreen} />
-        <Tab.Screen name="設定" component={ConfigScreen} />
+        <Tab.Screen name="コード" component={HomeStackScreen} />
+        <Tab.Screen name="クイズ" component={QuizStackScreen} />
+        <Tab.Screen name="設定" component={ConfigStackScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
